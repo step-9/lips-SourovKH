@@ -29,8 +29,8 @@
 
 (deftest ^:implementing yudhishtira-test
   (testing "falsy values"
-    (is (false? (c/yudishtira false)))
-    (is (false? (c/yudishtira nil))))
+    (is (= :ashwathama (c/yudishtira false)))
+    (is (= :ashwathama (c/yudishtira nil))))
   (testing "truthy values"
     (is (= 2 (c/yudishtira 2)))
     (is (= "" (c/yudishtira "")))
@@ -38,7 +38,7 @@
     (is (zero? (c/yudishtira 0)))
     (is (true? (c/yudishtira true)))))
 
-(deftest ^:kaocha/pending duplicate-first-test
+(deftest ^:implementing duplicate-first-test
   (testing "empty coll"
     (is (nil? (c/duplicate-first [])))
     (is (nil? (c/duplicate-first '())))
@@ -49,7 +49,7 @@
     (is (= [0 0] (c/duplicate-first [0])))
     (is (= [0 1 0] (c/duplicate-first [0 1])))))
 
-(deftest ^:kaocha/pending five-point-someone-test
+(deftest ^:implementing five-point-someone-test
   (testing ":chetan-bhagat when y is 5"
     (are [x y] (= :chetan-bhagat (c/five-point-someone x y))
       0  5
