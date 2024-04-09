@@ -2,29 +2,36 @@
 
 (defn safe-divide
   "Returns the result of x/y unless y is 0. Returns nil when y is 0"
-  {:level :easy
-   :use   '[when-not zero?]}
-  [x y])
+  ;; {:level :easy
+  ;;  :use   '[when-not zero?]}
+  [x y]
+  (when-not (zero? y)
+    (/ x y)))
 
 (defn informative-divide
   "Returns the result of x/y unless y is 0. Returns :infinite when y is 0"
   {:level :easy
    :use   '[if-not zero?]}
-  [x y])
+  [x y]
+  (if-not (zero? y)
+    (/ x y)
+    :infinite))
 
 (defn harishchandra
   "Only returns truthy values as themselves.
   Falsy values(false and nil) return nil"
   {:level :easy
    :use   '[when-let]}
-  [x])
+  [x] 
+  (when-let [a x] a))
 
 (defn yudishtira
   "Only returns truthy values as themselves.
   Falsy values(false and nil) return :ashwathama"
   {:level :easy
    :use   '[if-let]}
-  [x])
+  [x]
+  (if-let [a x] a :ashwathama))
 
 (defn duplicate-first
   "Returns coll with the first element duplicated.
