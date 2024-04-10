@@ -3,20 +3,20 @@
             [assignments.conditions :as c]))
 
 ;; When done with this, mark ^:implementing as ^:implemented
-(deftest ^:implementing safe-division-test
+(deftest ^:implemented safe-division-test
   (testing "non zero denominator"
     (is (= 2 (c/safe-divide 4 2))))
   (testing "zero denominator"
     (is (nil? (c/safe-divide 3 0)))))
 
 ;; when ready to implement mark ^:kaocha/pending as ^:implementing
-(deftest ^:implementing informative-division-test
+(deftest ^:implemented informative-division-test
   (testing "non zero denominator calculates result"
     (is (= 2 (c/informative-divide 4 2))))
   (testing "zero denominator yields :infinite"
     (is (= :infinite (c/informative-divide 3 0)))))
 
-(deftest ^:implementing harishchandra-test
+(deftest ^:implemented harishchandra-test
   (testing "falsy values"
     (is (nil? (c/harishchandra false)))
     (is (nil? (c/harishchandra nil))))
@@ -27,7 +27,7 @@
     (is (zero? (c/harishchandra 0)))
     (is (true? (c/harishchandra true)))))
 
-(deftest ^:implementing yudhishtira-test
+(deftest ^:implemented yudhishtira-test
   (testing "falsy values"
     (is (= :ashwathama (c/yudishtira false)))
     (is (= :ashwathama (c/yudishtira nil))))
@@ -38,7 +38,7 @@
     (is (zero? (c/yudishtira 0)))
     (is (true? (c/yudishtira true)))))
 
-(deftest ^:implementing duplicate-first-test
+(deftest ^:implemented duplicate-first-test
   (testing "empty coll"
     (is (nil? (c/duplicate-first [])))
     (is (nil? (c/duplicate-first '())))
@@ -49,7 +49,7 @@
     (is (= [0 0] (c/duplicate-first [0])))
     (is (= [0 1 0] (c/duplicate-first [0 1])))))
 
-(deftest ^:implementing five-point-someone-test
+(deftest ^:implemented five-point-someone-test
   (testing ":chetan-bhagat when y is 5"
     (are [x y] (= :chetan-bhagat (c/five-point-someone x y))
       0  5
@@ -73,7 +73,7 @@
       1 3
       2 4)))
 
-(deftest ^:kaocha/pending conditions-apply-test
+(deftest ^:implemented conditions-apply-test
   (testing ":wonder-woman when 1 and 3 in order"
     (is (= :wonder-woman (c/conditions-apply [1 3])))
     (is (= :wonder-woman (c/conditions-apply [1 2 3])))
