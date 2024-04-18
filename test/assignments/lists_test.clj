@@ -2,11 +2,11 @@
   (:require [clojure.test :refer :all]
             [assignments.lists :refer :all :as l]))
 
-(deftest ^:kaocha/pending map-test
+(deftest ^:implemented map-test
   (testing "identity with single coll"
     (is (= [1 2 3] (map' identity [1 2 3])))))
 
-(deftest ^:kaocha/pending filter-test
+(deftest ^:implemented filter-test
   (testing "even? predicate"
     (is (= [2 4 6] (filter' even? [1 2 3 4 5 6 9])))))
 
@@ -16,7 +16,7 @@
   (testing "arity 3"
     (is (= 15 (reduce' + 1 [2 3 4 5])))))
 
-(deftest ^:kaocha/pending count-test
+(deftest ^:implemented count-test
   (testing "sequence length"
     (is (= 5 (count' [1 2 3 4 5]))))
   (testing "nil"
@@ -28,19 +28,19 @@
   (testing "string"
     (is (= 6 (count' "abcdef")))))
 
-(deftest ^:kaocha/pending reverse-test
+(deftest ^:implemented reverse-test
   (testing "seqable collection"
     (is (= [5 4 3 2 1] (reverse' [1 2 3 4 5]))))
   (testing "non-seqable collection"
     (is (nil? (reverse' 1)))))
 
-(deftest ^:kaocha/pending every-test
+(deftest ^:implemented every-test
   (testing "true condition"
     (is (true? (every?' even? [2 4 6 8]))))
   (testing "false condition"
     (is (false? (every?' even? [2 4 9 6 8])))))
 
-(deftest ^:kaocha/pending some-test
+(deftest ^:implemented some-test
   (testing "true condition"
     (is (true? (some?' even? [1 5 3 4]))))
   (testing "false condition"

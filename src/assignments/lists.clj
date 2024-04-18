@@ -7,7 +7,13 @@
   {:level        :medium
    :use          '[loop recur]
    :dont-use     '[map]}
-  [f & colls])
+  [f colls]
+  (loop [[first-ele & remaining] colls
+         result []]
+    (if (nil? first-ele)
+      result
+      (recur remaining
+             (conj result (f first-ele))))))
 
 (defn filter'
   "Implement a non-lazy version of filter that accepts a
@@ -16,7 +22,15 @@
   {:level        :easy
    :use          '[loop recur]
    :dont-use     '[filter]}
-  [pred coll])
+  [pred coll]
+  (loop [[first-ele & remaining] coll
+         result []]
+    (if (nil? first-ele)
+      result
+      (recur remaining
+             (if (pred first-ele)
+               (conj result first-ele)
+               result)))))
 
 (defn reduce'
   "Implement your own multi-arity version of reduce
@@ -34,7 +48,13 @@
   {:level        :easy
    :use          '[loop recur]
    :dont-use     '[count]}
-  [coll])
+  [coll]
+  (loop [collection coll
+         result 0]
+    (if (empty? collection)
+      result
+      (recur (rest collection)
+             (inc result)))))
 
 (defn reverse'
   "Implement your own version of reverse that reverses a coll.
@@ -42,7 +62,9 @@
   {:level        :easy
    :use          '[reduce conj seqable? when]
    :dont-use     '[reverse]}
-  [coll])
+  [coll]
+  (when (seqable? coll)
+    (reduce #(conj %1 %2) '() coll)))
 
 (defn every?'
   "Implement your own version of every? that checks if every
@@ -50,7 +72,11 @@
   {:level        :easy
    :use          '[loop recur and]
    :dont-use     '[every?]}
-  [pred coll])
+  [pred coll]
+  (loop [[first-ele & remaining] coll]
+    (if (nil? first-ele)
+      true
+      (and (pred first-ele) (recur remaining)))))
 
 (defn some?'
   "Implement your own version of some that checks if at least one
@@ -60,7 +86,11 @@
   {:level        :easy
    :use          '[loop recur or]
    :dont-use     '[some]}
-  [pred coll])
+  [pred coll]
+  (loop [[first-ele & remaining] coll]
+    (if (nil? first-ele)
+      false
+      (or (pred first-ele) (recur remaining)))))
 
 (defn ascending?
   "Verify if every element is greater than or equal to its predecessor"
